@@ -52,12 +52,14 @@ export type ReferenceContextFormData = {
   text: string;
   wasAppropriate: string;
   rating: number;
+  privateText?: string;
 };
 
 export type ReferenceFormInputs = {
   text: string;
   wasAppropriate: boolean;
   rating: number;
+  privateText?: string;
 };
 
 export interface ReferenceStepProps {
@@ -86,6 +88,7 @@ export default function ReferenceForm({
     text: "",
     wasAppropriate: "",
     rating: 0.33,
+    privateText: "",
   });
 
   const setReferenceValues = (values: ReferenceContextFormData) => {

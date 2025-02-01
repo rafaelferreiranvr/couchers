@@ -37,7 +37,6 @@ export default function Rating({
   const {
     control,
     handleSubmit,
-
     formState: { errors },
   } = useForm<ReferenceContextFormData>({
     defaultValues: {
@@ -51,11 +50,11 @@ export default function Rating({
       referenceType === referenceTypeRoute[ReferenceType.REFERENCE_TYPE_FRIEND]
     ) {
       router.push(
-        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${referenceStepStrings[2]}`,
+        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${referenceStepStrings[3]}`,
       );
     } else {
       router.push(
-        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${hostRequestId}/${referenceStepStrings[2]}`,
+        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${hostRequestId}/${referenceStepStrings[3]}`,
       );
     }
   });
