@@ -58,7 +58,7 @@ export default function LeaveReferencePage({
 }) {
   const { t } = useTranslation([GLOBAL, PROFILE]);
   const classes = useStyles();
-  const isBelowMedium = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const {
     data: user,
@@ -99,7 +99,7 @@ export default function LeaveReferencePage({
           )) ? (
           <div className={classes.root}>
             <ProfileUserProvider user={user}>
-              {!isBelowMedium && (
+              {!isMobile && (
                 <UserOverview showHostAndMeetAvailability={false} />
               )}
               <div className={classes.form}>

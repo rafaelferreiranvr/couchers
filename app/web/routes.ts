@@ -98,6 +98,7 @@ export const referenceTypeRoute: Record<
 };
 export const referenceStepStrings = [
   "appropriate",
+  "felt-unsafe",
   "rating",
   "reference",
   "submit",

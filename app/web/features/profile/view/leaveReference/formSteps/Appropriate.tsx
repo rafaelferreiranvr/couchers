@@ -45,7 +45,6 @@ export default function Appropriate({
   const {
     control,
     handleSubmit,
-
     formState: { errors },
   } = useForm<ReferenceContextFormData>({
     defaultValues: {
@@ -55,15 +54,18 @@ export default function Appropriate({
 
   const onSubmit = handleSubmit((values) => {
     setReferenceValues(values);
+
+    const isFeltSafeStepNumber = values.wasAppropriate === "true" ? 2 : 1;
+
     if (
       referenceType === referenceTypeRoute[ReferenceType.REFERENCE_TYPE_FRIEND]
     ) {
       router.push(
-        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${referenceStepStrings[1]}`,
+        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${referenceStepStrings[isFeltSafeStepNumber]}`,
       );
     } else {
       router.push(
-        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${hostRequestId}/${referenceStepStrings[1]}`,
+        `${leaveReferenceBaseRoute}/${referenceType}/${user.userId}/${hostRequestId}/${referenceStepStrings[isFeltSafeStepNumber]}`,
       );
     }
   });

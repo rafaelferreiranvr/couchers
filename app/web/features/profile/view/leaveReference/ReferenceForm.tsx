@@ -7,8 +7,14 @@ import Text from "features/profile/view/leaveReference/formSteps/Text";
 import { useTranslation } from "i18n";
 import { GLOBAL, PROFILE } from "i18n/namespaces";
 import { useState } from "react";
-import { leaveReferenceBaseRoute, ReferenceStep } from "routes";
+import {
+  leaveReferenceBaseRoute,
+  ReferenceStep,
+  referenceStepStrings,
+} from "routes";
 import makeStyles from "utils/makeStyles";
+
+import FeltUnsafeStep from "./formSteps/FeltUnsafeStep";
 
 export const useReferenceStyles = makeStyles((theme) => ({
   alert: {
@@ -96,37 +102,56 @@ export default function ReferenceForm({
       ? `${leaveReferenceBaseRoute}/${referenceType}/${userId}`
       : `${leaveReferenceBaseRoute}/${referenceType}/${userId}/${hostRequestId}`;
 
-  return isSkippedStep ? (
-    <Redirect to={redirectTo} />
-  ) : step === "appropriate" ? (
-    <Appropriate
-      referenceData={referenceData}
-      setReferenceValues={setReferenceValues}
-      referenceType={referenceType}
-      hostRequestId={hostRequestId}
-    />
-  ) : step === "rating" ? (
-    <Rating
-      referenceData={referenceData}
-      setReferenceValues={setReferenceValues}
-      referenceType={referenceType}
-      hostRequestId={hostRequestId}
-    />
-  ) : step === "reference" ? (
-    <Text
-      referenceData={referenceData}
-      setReferenceValues={setReferenceValues}
-      referenceType={referenceType}
-      hostRequestId={hostRequestId}
-    />
-  ) : step === "submit" ? (
-    <SubmitReference
-      referenceData={referenceData}
-      referenceType={referenceType}
-      hostRequestId={hostRequestId}
-      userId={userId}
-    />
-  ) : (
-    <Alert severity="error">{t("profile:leave_reference.invalid_step")}</Alert>
+  if (isSkippedStep) {
+    return <Redirect to={redirectTo} />;
+  }
+
+  if (!referenceStepStrings.includes(step)) {
+    <Alert severity="error">{t("profile:leave_reference.invalid_step")}</Alert>;
+  }
+
+  return (
+    <>
+      {step === "appropriate" && (
+        <Appropriate
+          referenceData={referenceData}
+          setReferenceValues={setReferenceValues}
+          referenceType={referenceType}
+          hostRequestId={hostRequestId}
+        />
+      )}
+      {step === "felt-unsafe" && (
+        <FeltUnsafeStep
+          referenceData={referenceData}
+          setReferenceValues={setReferenceValues}
+          referenceType={referenceType}
+          hostRequestId={hostRequestId}
+        />
+      )}
+      {step === "rating" && (
+        <Rating
+          referenceData={referenceData}
+          setReferenceValues={setReferenceValues}
+          referenceType={referenceType}
+          hostRequestId={hostRequestId}
+        />
+      )}
+      {step === "reference" && (
+        <Text
+          referenceData={referenceData}
+          setReferenceValues={setReferenceValues}
+          referenceType={referenceType}
+          hostRequestId={hostRequestId}
+        />
+      )}
+      {step === "submit" && (
+        <SubmitReference
+          referenceData={referenceData}
+          referenceType={referenceType}
+          hostRequestId={hostRequestId}
+          userId={userId}
+        />
+      )}
+    </>
   );
 }
