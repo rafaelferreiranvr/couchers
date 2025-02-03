@@ -9,6 +9,7 @@ import { ReferenceType } from "proto/references_pb";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
+  helpCenterURL,
   leaveReferenceBaseRoute,
   referenceStepStrings,
   referenceTypeRoute,
@@ -103,7 +104,8 @@ const FeltUnsafeStep = ({
       <StyledTextBody>
         <BoldText>This will only be seen by our Safety Team</BoldText> and will
         stay <BoldText>private</BoldText>. The more details the better, but even
-        a short explanation will help a lot. Read more here.
+        a short explanation will help a lot.
+        <a href={helpCenterURL}> Read more here</a>.
       </StyledTextBody>
       <StyledTextBody>
         Thank you for helping us keep the community safe!
