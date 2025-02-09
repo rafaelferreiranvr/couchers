@@ -82,12 +82,14 @@ export default function SubmitReference({
             wasAppropriate: true,
             text: referenceData.text,
             rating: referenceData.rating,
+            privateText: referenceData.privateText,
           }
         : {
             toUserId: userId,
             wasAppropriate: false,
             text: referenceData.text,
             rating: referenceData.rating,
+            privateText: referenceData.privateText,
           };
 
     resetFriendReferenceWriting();
@@ -117,12 +119,14 @@ export default function SubmitReference({
               wasAppropriate: true,
               text: referenceData.text,
               rating: referenceData.rating,
+              privateText: referenceData.privateText,
             }
           : {
               hostRequestId: hostRequestId,
               wasAppropriate: false,
               text: referenceData.text,
               rating: referenceData.rating,
+              privateText: referenceData.privateText,
             };
 
       resetHostRequestReferenceWriting();

@@ -33,6 +33,7 @@ export function DialogActions(props: Omit<DialogActionsProps, "className">) {
         margin: 0,
         padding: theme.spacing(2),
         paddingTop: 0,
+        ...props.sx,
       }}
     />
   );

@@ -29,6 +29,7 @@ interface WriteReferenceBaseInput {
   text: string;
   wasAppropriate: boolean;
   rating: number;
+  privateText?: string;
 }
 
 export interface WriteHostRequestReferenceInput
@@ -92,12 +93,17 @@ export async function writeHostRequestReference({
   text,
   wasAppropriate,
   rating,
+  privateText,
 }: WriteHostRequestReferenceInput) {
   const req = new WriteHostRequestReferenceReq();
   req.setHostRequestId(hostRequestId);
   req.setText(text);
   req.setWasAppropriate(wasAppropriate);
   req.setRating(rating);
+
+  if (privateText) {
+    req.setPrivateText(privateText);
+  }
 
   const res = await client.references.writeHostRequestReference(req);
   return res.toObject();
@@ -108,12 +114,17 @@ export async function writeFriendRequestReference({
   text,
   wasAppropriate,
   rating,
+  privateText,
 }: WriteFriendReferenceInput) {
   const req = new WriteFriendReferenceReq();
   req.setToUserId(toUserId);
   req.setText(text);
   req.setWasAppropriate(wasAppropriate);
   req.setRating(rating);
+
+  if (privateText) {
+    req.setPrivateText(privateText);
+  }
 
   const res = await client.references.writeFriendReference(req);
   return res.toObject();
