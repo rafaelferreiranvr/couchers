@@ -16,6 +16,7 @@ import { Dialog, DialogActions, DialogTitle } from "components/Dialog";
 import EditLocationMap from "components/EditLocationMap";
 import ImageInput from "components/ImageInput";
 import StyledLink from "components/StyledLink";
+import CircularProgress from "components/CircularProgress";
 import { useLanguages } from "features/profile/hooks/useLanguages";
 import { useRegions } from "features/profile/hooks/useRegions";
 import useUpdateUserProfile from "features/profile/hooks/useUpdateUserProfile";
@@ -47,6 +48,10 @@ import useStyles from "./styles";
 
 const StyledAlert = styled(Alert)(({ theme }) => ({
   marginTop: theme.spacing(2),
+}));
+
+const StyledCircularProgress = styled(CircularProgress)(({ theme }) => ({
+  position: "absolute",
 }));
 
 export type EditProfileFormValues = Omit<
@@ -533,6 +538,8 @@ export default function EditProfileForm() {
               >
                 {t("global:save")}
               </Button>
+              {isUploading && <StyledCircularProgress />}
+              {/* {isUploading && <CenteredSpinner />} */}
             </div>
           </form>
           <Dialog
