@@ -80,6 +80,8 @@ export default function EditProfileForm() {
   const [showIncompleteProfileDialog, setShowIncompleteProfileDialog] =
     useState(false);
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const queryClient = useQueryClient();
   const {
     control,
@@ -219,6 +221,7 @@ export default function EditProfileForm() {
               initialPreviewSrc={user.avatarUrl}
               userName={user.name}
               type="avatar"
+              onUploading={setIsUploading} //track upload state
               onSuccess={async (data) => {
                 await service.user.updateAvatar(data.key);
                 if (user) queryClient.invalidateQueries(userKey(user.userId));
@@ -526,6 +529,7 @@ export default function EditProfileForm() {
                 variant="contained"
                 color="primary"
                 loading={updateIsLoading}
+                disabled={isUploading || updateIsLoading} //Disable while uploading
               >
                 {t("global:save")}
               </Button>
