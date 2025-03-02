@@ -184,3 +184,8 @@ enum SVFailReason {
 message VerificationSVFail {
   SVFailReason reason = 1;
 }
+
+message ActivenessProbe {
+  // 1, 2, 3, etc
+  uint64 reminder_number = 1;
+}
